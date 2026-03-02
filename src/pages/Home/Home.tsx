@@ -23,8 +23,8 @@ export default function Home() {
         <div className="home">
             <section className= "home-header">
                 <h1>F1 Clone</h1>
-                <h1 className="home-hero__title">Championship<br /><span className="text-red">Standings</span></h1>
-                <p className="home-hero__desc">Formula 1 World Championship — current season rankings</p>
+                <h1 className="home-header__title">Championship<br /><span className="text-red">Standings</span></h1>
+                <p className="home-header__desc">Formula 1 World Championship — current season rankings</p>
             </section>
         </div>
     )
