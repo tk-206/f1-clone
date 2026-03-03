@@ -34,10 +34,17 @@ export default function Layout({ children }: Props) {
                 </div>
             </header>
             <main className="main">
-                {children}
+                <div className="container page-enter">
+                    {children}
+                </div>
             </main>
 
-            <footer>footer</footer>
+            <footer className="footer">
+                <div className="container footer__inner">
+                    <p>Data provided by <a href="https://jolpi.ca" target="_blank" rel="noreferrer">Jolpica API</a> (Ergast fork)</p>
+                    <p>© 2025 F1 Hub • Portfolio Project</p>
+                </div>
+            </footer>
         </div>
     )
 }

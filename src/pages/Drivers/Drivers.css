@@ -1,0 +1,127 @@
+.drivers-page {}
+
+.drivers-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+.drivers-header__title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.drivers-header__sub {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
+
+/* Grid */
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+/* Driver Card */
+.driver-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.driver-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transition: transform var(--transition);
+    transform-origin: left;
+}
+
+.driver-card:hover {
+    background: var(--color-surface-2);
+    border-color: var(--color-surface-3);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.driver-card:hover::before {
+    transform: scaleX(1);
+}
+
+.driver-card__number {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.driver-card__code {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text-secondary);
+}
+
+.driver-card__name {
+    display: flex;
+    flex-direction: column;
+    margin: 6px 0 4px;
+}
+
+.driver-card__given {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.driver-card__family {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.driver-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border);
+}
+
+.driver-card__nat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+.driver-card__dob {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.drivers-empty {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--color-text-secondary);
+}

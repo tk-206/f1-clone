@@ -1,0 +1,72 @@
+export interface Driver {
+  driverId: string;
+  permanentNumber?: string;
+  code?: string;
+  url: string;
+  givenName: string;
+  familyName: string;
+  dateOfBirth: string;
+  nationality: string;
+}
+
+export interface Constructor {
+  constructorId: string;
+  url: string;
+  name: string;
+  nationality: string;
+}
+
+export interface DriverStanding {
+  position: string;
+  positionText: string;
+  points: string;
+  wins: string;
+  Driver: Driver;
+  Constructors: Constructor[];
+}
+
+export interface ConstructorStanding {
+  position: string;
+  positionText: string;
+  points: string;
+  wins: string;
+  Constructor: Constructor;
+}
+
+/* paginated response */
+export interface JolpicaResponse<T> {
+  MRData: {
+    xmlns: string;
+    series: string;
+    url: string;
+    limit: string;
+    offset: string;
+    total: string;
+    StandingsTable?: {
+      season: string;
+      StandingsLists: T[];
+    };
+    DriverTable?: {
+      Drivers: T[];
+    };
+    ConstructorTable?: {
+      Constructors: T[];
+    };
+    RaceTable?: {
+      season: string;
+      Races: T[];
+    };
+  };
+}
+
+export interface DriverStandingsList {
+  season: string;
+  round: string;
+  DriverStandings: DriverStanding[];
+}
+
+export interface ConstructorStandingsList {
+  season: string;
+  round: string;
+  ConstructorStandings: ConstructorStanding[];
+}
