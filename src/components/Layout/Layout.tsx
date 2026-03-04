@@ -8,6 +8,7 @@ interface Props {
 const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Drivers', path: '/drivers' },
+    { name: 'Races', path: '/races' },
 ]
 
 export default function Layout({ children }: Props) {
