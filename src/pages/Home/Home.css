@@ -1,0 +1,68 @@
+.home-hero {
+    padding: 60px 0 40px;
+}
+
+.home-hero__eyeblow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.home-hero__badge {
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-right: 3px;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.home-hero__season {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.home-hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+}
+
+.home-hero__desc {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+.home-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0;
+}
+
+.home-tabs__btn {
+    padding: 10px 24px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all var(--transition);
+    border-radius: 0;
+}
+
+.home-tabs__btn:hover {
+    color: var(--color-text);
+}
+
+.home-tabs__btn--active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+}

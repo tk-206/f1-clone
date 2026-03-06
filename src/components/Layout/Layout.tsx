@@ -9,6 +9,7 @@ const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Drivers', path: '/drivers' },
     { name: 'Races', path: '/races' },
+    { name: 'Teams', path: '/teams'}
 ]
 
 export default function Layout({ children }: Props) {

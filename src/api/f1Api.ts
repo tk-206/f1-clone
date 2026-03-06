@@ -8,11 +8,29 @@ import type {
 } from '../types/f1';
 
 const API_BASE_URL = 'https://api.jolpi.ca/ergast/f1';
+const seasonNumber = '2025';
 
 async function fetchJSON<T>(url: string): Promise<T> {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`API Error: ${res.status}`);
     return res.json() as Promise<T>;
+}
+
+/* Standings */
+export async function getDriverStandings(): Promise<{ data: DriverStandingsList; season: string } | null> {
+    const list = await fetchJSON<JolpicaResponse<DriverStandingsList>>(
+        `${API_BASE_URL}/${seasonNumber}/driverStandings.json`
+    );
+    const listData = list.MRData.StandingsTable?.StandingsLists[0];
+    return listData ? { data: listData, season: seasonNumber } : null;
+}
+
+export async function getConstructorStandings(): Promise<{ data: ConstructorStandingsList; season: string } | null> {
+    const list = await fetchJSON<JolpicaResponse<ConstructorStandingsList>>(
+        `${API_BASE_URL}/${seasonNumber}/constructorStandings.json`
+    );
+    const listData = list.MRData.StandingsTable?.StandingsLists[0]
+    return listData ? { data: listData, season: seasonNumber} : null;
 }
 
 /* Drivers */
@@ -28,24 +46,18 @@ export async function getDrivers(limit = 30, offset = 0): Promise<{ drivers: Dri
 /* Constructors */
 export async function getConstructors(): Promise<Constructor[]> {
     const data = await fetchJSON<JolpicaResponse<Constructor>>(
-        `${API_BASE_URL}/constructors?constructors.json`
-    );
-    const list = data.MRData.ConstructorTable?.Constructors ?? [];
-    if (list.length > 0) return list;
-
-    const fallback = await fetchJSON<JolpicaResponse<Constructor>>(
-        `${API_BASE_URL}/${2025}/constructors.json`
+        `${API_BASE_URL}/${seasonNumber}/constructors.json`
     );
 
-    return fallback.MRData.ConstructorTable?.Constructors ?? [];
+    return data.MRData.ConstructorTable?.Constructors ?? [];
 }
 
 /* Races */
 export async function getCurrentSeasonRaces(): Promise<{ races: Race[]; season: string }> {
     const data = await fetchJSON<JolpicaResponse<Race>>(
-        `${API_BASE_URL}/${2025}/races.json?limit=100`
+        `${API_BASE_URL}/${seasonNumber}/races.json?limit=100`
     );
-    return { races: data.MRData.RaceTable?.Races ?? [], season: '2025' };
+    return { races: data.MRData.RaceTable?.Races ?? [], season: seasonNumber };
 }
 
 export async function getRaces(season: number, round: string): Promise<Race | null> {

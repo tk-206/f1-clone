@@ -35,7 +35,6 @@ export default function Races() {
         }
 
         try {
-            setLoading(true);
 
             const data = await getRaces(Number(season), race.round);
 
