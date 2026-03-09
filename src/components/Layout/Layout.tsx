@@ -9,7 +9,8 @@ const navItems = [
     { name: 'Home', path: '/' },
     { name: 'Drivers', path: '/drivers' },
     { name: 'Races', path: '/races' },
-    { name: 'Teams', path: '/teams'}
+    { name: 'Teams', path: '/teams'},
+    { name: 'Guide', path: '/guide'},
 ]
 
 export default function Layout({ children }: Props) {
@@ -27,7 +28,7 @@ export default function Layout({ children }: Props) {
                             <NavLink
                                 key={path}
                                 to={path}
-                                className={({ isActive }) => `navbar__nav-item ${isActive ? 'active' : ''}`}
+                                className={({ isActive }) => `navbar__link ${isActive ? 'navbar__link--active' : ''}`}
                             >
                                 {name}
                             </NavLink>

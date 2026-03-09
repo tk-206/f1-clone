@@ -93,7 +93,7 @@ export default function Home() {
             {error && <p className="error-msg">{error}</p>}
 
             {!loading && !error && tab === 'drivers' && driverData?.data && (
-                <div className="standings-table">
+                <div className="standing-table">
                     {driverData.data.DriverStandings.map((s) => {
                         const pos = Number(s.position);
                         const teamColor = getTeamColor(s.Constructors[0]?.constructorId ?? '');
@@ -102,14 +102,46 @@ export default function Home() {
                                 <div className="standing-row__pos" style={{ color: getMedalColor(pos) }}>
                                     {pos <= 3 ? ['🥇', '🥈', '🥉'][pos - 1] : pos}
                                 </div>
-                                <div className="standing-row_team-bar" style={{ background: teamColor}} />
-                                <div className="standing-row_info">
+                                <div className="standing-row__team-bar" style={{ background: teamColor}} />
+                                <div className="standing-row__info">
                                     <span className="standing-row__code">{s.Driver.code ?? s.Driver.familyName.slice(0, 3).toUpperCase()}</span>
                                     <span className="standing-row__name">
                                         {s.Driver.givenName} <strong>{s.Driver.familyName}</strong>
                                     </span>
+                                    <span className="standing-row__team">{s.Constructors[0]?.name}</span>
                                 </div>
-                                <div>
+                                <div className="standing-row__right">
+                                    <span className="standing-row__pts">{s.points}</span>
+                                    <span className="standing-row__pts-label">PTS</span>
+                                    <span className="standing-row__wins">{s.wins} Win{Number(s.wins) !== 1 ? 's' : ''}</span>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
+
+            {!loading && !error && tab === 'constructors' && constructorData?.data && (
+                <div className="standing-table">
+                    {constructorData.data.ConstructorStandings.map((s) => {
+                        const pos = Number(s.position);
+                        const teamColor = getTeamColor(s.Constructor.constructorId);
+                        return (
+                            <div key={s.Constructor.constructorId} className="standing-row">
+                                <div className="standing-row__pos" style={{ color: getMedalColor(pos) }}>
+                                    {pos <= 3 ? ['🥇', '🥈', '🥉'][pos - 1] : pos}
+                                </div>
+                                <div className="standing-row__team-bar" style={{ background: teamColor }} />
+                                <div className="standing-row__info">
+                                    <span className="standing-row__name">
+                                        <strong>{s.Constructor.name}</strong>
+                                    </span>
+                                    <span className="standing-row__team">{s.Constructor.nationality}</span>
+                                </div>
+                                <div className="standing-row__right">
+                                    <span className="standing-row__pts">{s.points}</span>
+                                    <span className="standing-row__pts-label">PTS</span>
+                                    <span className="standing-row__wins">{s.wins} Win{Number(s.wins) !== 1 ? 's' : ''}</span>
                                 </div>
                             </div>
                         )
